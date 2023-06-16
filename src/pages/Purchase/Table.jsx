@@ -208,7 +208,7 @@ const TableCp = () => {
     }
   }, [dataSubmit]);
 
-  const handleSubmitAnother = () => {
+  const handleSubmit = () => {
     let localData = JSON.parse(localStorage.getItem("productData")) || [];
     let dataArr = [];
     let promData = new Promise((resolve, reject) => {
@@ -238,8 +238,6 @@ const TableCp = () => {
           });
       });
   };
-
-
 
   const handleDelete = (id) => {
     let productData = JSON.parse(localStorage.getItem("productData"));
@@ -380,11 +378,19 @@ const TableCp = () => {
         </tbody>
       </table>
       <div className="d-flex gap-2">
-        <button className="btn btn-primary btn-md" onClick={handleSubmitAnother}>
-          Submit
-        </button>
-        <button className="btn btn-success btn-md" onclick={handleSubmitAnother}>Submit and Another</button>
-      </div>
+          <button
+            className="btn btn-primary btn-md"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+          <button
+            className="btn btn-success btn-md"
+            onClick={handleSubmit}
+          >
+            Submit and Another
+          </button>
+        </div>
       {/* table */}
     </div>
   );

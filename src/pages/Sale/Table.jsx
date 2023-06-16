@@ -5,7 +5,9 @@ import { MdDeleteForever } from "react-icons/md";
 import { SelectPicker } from "rsuite";
 import http from "../../http";
 import Cookies from "universal-cookie";
-import DateTimeFormat from '../../components/DateTimeFormat'
+import DateTimeFormat from "../../components/DateTimeFormat";
+import { Button, Modal } from "react-bootstrap";
+import { FaExclamationCircle } from "react-icons/fa";
 
 const TableCp = () => {
   const [product, setProduct] = useState([]);
@@ -13,6 +15,12 @@ const TableCp = () => {
   const [productDetailsData, setProductDetailsData] = useState([]);
   const [Clicked, setClicked] = useState(0);
   const [dataSubmit, setDataSubmit] = useState(0);
+  const [getError, setError] = useState([]);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [rows, setRows] = useState(() => {
     let productData = JSON.parse(localStorage.getItem("productDataSale"));
     if (productData) {
@@ -59,7 +67,8 @@ const TableCp = () => {
         },
       })
       .then((response) => {
-        let localData = JSON.parse(localStorage.getItem("productDataSale")) || [];
+        let localData =
+          JSON.parse(localStorage.getItem("productDataSale")) || [];
         let productId = response.data.data.id;
         console.log(response.data.data);
         if (localData.length > 0) {
@@ -131,7 +140,8 @@ const TableCp = () => {
         return true;
       })
       .then(() => {
-        let localData = JSON.parse(localStorage.getItem("productDataSale")) || [];
+        let localData =
+          JSON.parse(localStorage.getItem("productDataSale")) || [];
         let FilteredData = localData.filter(function (element) {
           return element.id !== undefined;
         });
@@ -149,7 +159,7 @@ const TableCp = () => {
           let FilteredData = localData.filter(function (element) {
             return element.qty !== 0;
           });
-          console.log(FilteredData)
+          console.log(FilteredData);
           localStorage.setItem(
             "productDataSale",
             JSON.stringify([
@@ -210,7 +220,7 @@ const TableCp = () => {
   useEffect(() => {
     if (dataSubmit == 1) {
       setDataSubmit(0);
-      refreshPage()
+      refreshPage();
     }
   }, [dataSubmit]);
 
@@ -228,7 +238,7 @@ const TableCp = () => {
         return true;
       })
       .then(() => {
-        console.log(dataArr);
+        
         http
           .post(`/sales/create`, dataArr, {
             headers: {
@@ -241,158 +251,195 @@ const TableCp = () => {
             localStorage.removeItem("productDataSale");
             setDataSubmit(1);
             return true;
+          })
+          .catch((err) => {
+            // console.log()
+
+            console.log(err?.response?.data?.message);
+            setError(err?.response?.data?.message);
+            handleShow();
           });
       });
   };
 
-
   const handleDelete = (id) => {
     let productData = JSON.parse(localStorage.getItem("productDataSale"));
-    let filterData = productData.filter(e=> e.id !==id)
-    localStorage.setItem(
-      "productDataSale",
-      JSON.stringify(filterData)
-    );
-    console.log(filterData)
+    let filterData = productData.filter((e) => e.id !== id);
+    localStorage.setItem("productDataSale", JSON.stringify(filterData));
+    console.log(filterData);
 
-    setRows(filterData)
+    setRows(filterData);
   };
 
   function calculateSum(array, property) {
     const total = array.reduce((accumulator, object) => {
       return accumulator + object[property];
     }, 0);
-  
+
     return total;
   }
 
-
   return (
-    <div>
-      <div className="d-flex mb-4">
-        <span className="me-2">Date </span>
-        <span style={{"border": "1px solid black"}}>{DateTimeFormat(new Date())}</span>
-
-      </div>
-      {/* table */}
-      <table className="table table-bordered">
-        <thead>
-          <tr className="text-center">
-            <th scope="col">
-              Product Name <span className="text-danger">*</span>
-            </th>
-            <th>Stock Qty</th>
-            <th>
-              Qty<span className="text-danger">*</span>
-            </th>
-            <th scope="col">U/M</th>
-            <th scope="col">
-              Price <span className="text-danger">*</span>
-            </th>
-            <th scope="col">Disc</th>
-            <th scope="col">Total</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>
-              <td>
-                {/* {check} */}
-                <SelectPicker
-                  name="product_id"
-                  data={product?.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  style={{ width: "100%" }}
-                  defaultValue={r?.id || ""}
-                  // onSearch={(val) => getSearch(val)}
-                  onChange={(value) => setProDetails(value)}
-                />
-              </td>
-              <td className="">
-                <input
-                  type="number"
-                  className="text-end qty  clr p-1"
-                  placeholder="0.00"
-                  defaultValue={r?.stock_qty}
-                  disabled
-                />
-              </td>
-              <td>
-                {" "}
-                <input
-                  type="number"
-                  step="1"
-                  min={0}
-                  max={9}
-                  className="text-end qty p-1"
-                  defaultValue={r?.qty}
-                  onChange={(e) => updateData(i, e?.target?.value, r)}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  className="text-end qty p-1"
-                  placeholder="0.00"
-                  defaultValue={r?.U_M}
-                  disabled
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  className="text-end qty p-1"
-                  placeholder="0.00"
-                  defaultValue={r?.price}
-                  disabled
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  className="text-end qty p-1"
-                  placeholder="0.00"
-                  defaultValue={r?.disc}
-                  disabled
-                />
-              </td>
-              <td>{r.total}</td>
-              <td className="  text-white">
-                <button className="d-flex align-items-center justify-content-center btn m-2 dlt text-danger " onClick={()=>handleDelete(r.id)}>
-                  <MdDeleteForever size={25} />
-                </button>
-              </td>
+    <>
+      <div>
+        <div className="d-flex mb-4">
+          <span className="me-2">Date </span>
+          <span style={{ border: "1px solid black" }}>
+            {DateTimeFormat(new Date())}
+          </span>
+        </div>
+        {/* table */}
+        <table className="table table-bordered">
+          <thead>
+            <tr className="text-center">
+              <th scope="col">
+                Product Name <span className="text-danger">*</span>
+              </th>
+              <th>Stock Qty</th>
+              <th>
+                Qty<span className="text-danger">*</span>
+              </th>
+              <th scope="col">U/M</th>
+              <th scope="col">
+                Price <span className="text-danger">*</span>
+              </th>
+              <th scope="col">Disc</th>
+              <th scope="col">Total</th>
+              <th scope="col">Action</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={i}>
+                <td>
+                  {/* {check} */}
+                  <SelectPicker
+                    name="product_id"
+                    data={product?.map((item) => ({
+                      label: item.name,
+                      value: item.id,
+                    }))}
+                    style={{ width: "100%" }}
+                    defaultValue={r?.id || ""}
+                    // onSearch={(val) => getSearch(val)}
+                    onChange={(value) => setProDetails(value)}
+                  />
+                </td>
+                <td className="">
+                  <input
+                    type="number"
+                    className="text-end qty  clr p-1"
+                    placeholder="0.00"
+                    defaultValue={r?.stock_qty}
+                    disabled
+                  />
+                </td>
+                <td>
+                  {" "}
+                  <input
+                    type="number"
+                    step="1"
+                    min={0}
+                    max={9}
+                    className="text-end qty p-1"
+                    defaultValue={r?.qty}
+                    onChange={(e) => updateData(i, e?.target?.value, r)}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    className="text-end qty p-1"
+                    placeholder="0.00"
+                    defaultValue={r?.U_M}
+                    disabled
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    className="text-end qty p-1"
+                    placeholder="0.00"
+                    defaultValue={r?.price}
+                    disabled
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    className="text-end qty p-1"
+                    placeholder="0.00"
+                    defaultValue={r?.disc}
+                    disabled
+                  />
+                </td>
+                <td>{r.total}</td>
+                <td className="  text-white">
+                  <button
+                    className="d-flex align-items-center justify-content-center btn m-2 dlt text-danger "
+                    onClick={() => handleDelete(r.id)}
+                  >
+                    <MdDeleteForever size={25} />
+                  </button>
+                </td>
+              </tr>
+            ))}
 
-          <tr>
-            <th className="add">
-              <button
-                className="btn btn-sm btn-info text-white "
-                onClick={() => handleAddRow(productDetailsData)}
-              >
-                Add New Product
-              </button>
-            </th>
-            <td colSpan={5} className="text-end fw-semibold">
-              Grand Total
-            </td>
-            <td>{calculateSum(rows, 'total')}</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-      <div className="d-flex gap-2">
-        <button className="btn btn-primary btn-md" onClick={handleSubmitAnother}>
-          Submit
-        </button>
-        <button className="btn btn-success btn-md" onClick={handleSubmitAnother} >Submit and Another</button>
+            <tr>
+              <th className="add">
+                <button
+                  className="btn btn-sm btn-info text-white "
+                  onClick={() => handleAddRow(productDetailsData)}
+                >
+                  Add New Product
+                </button>
+              </th>
+              <td colSpan={5} className="text-end fw-semibold">
+                Grand Total
+              </td>
+              <td>{calculateSum(rows, "total")}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="d-flex gap-2">
+          <button
+            className="btn btn-primary btn-md"
+            onClick={handleSubmitAnother}
+          >
+            Submit
+          </button>
+          <button
+            className="btn btn-success btn-md"
+            onClick={handleSubmitAnother}
+          >
+            Submit and Another
+          </button>
+        </div>
+        {/* table */}
       </div>
-      {/* table */}
-    </div>
+
+      <Modal centered show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title style={{ fontSize: "50px", margin: "auto" }}>
+            <FaExclamationCircle />
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ textAlign: "left", fontSize: "20px" }}>
+          <ul>
+            {getError.name && <li>Product Name: {getError.name}.</li>}
+            {getError.msg && <li>Message: {getError.msg}.</li>}
+            {getError.product && <li>Message: {getError.product}.</li>}
+            {getError.quantity && <li>Message: {getError.quantity}.</li>}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
