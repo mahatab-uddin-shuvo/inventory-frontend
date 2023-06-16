@@ -1,0 +1,156 @@
+/* @media (max-width: 991.98px){
+    .search_btn{
+        width: 50% !important;
+    }
+    .kgEPYv{
+        font-size: 12px !important;
+    }
+ 
+    .action__btn {
+        font-size: 13px;
+    }
+}
+  @media (max-width: 1200px){
+    .search_btn{
+        width: 50% !important;
+    }
+}
+
+  @media (max-width: 767.98px){
+    .search_btn{
+        width: 100% !important;
+    }
+    .ifOHjV {
+        width: 800px !important;
+    }
+    .action__btn {
+        font-size: 12px;
+    }
+} */
+/* 
+*{
+    font-size: 14px !important;
+} */
+
+/* .below-container{
+    
+} */
+
+.font{
+    font-size: 20px !important;
+}
+
+.dashboard_font{
+    font-size: 30px !important;
+}
+
+@media only screen and (min-width: 280px) and (max-width: 700px){
+    .small{
+        margin: 7px !important;
+        width: auto;
+    }
+    .btn-container {
+        margin-left: -27px;
+        margin-top: 40px;
+        display : flex;
+        flex-direction : row-reverse;
+        /* place-items : left; */
+       width: 100%;
+      }
+    .chart-small {
+        margin-left: -30px;
+        z-index: -100;
+    }
+
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1200px){
+   
+    .btn-container {
+        margin-left: -27px;
+        margin-top: 40px;
+        display : flex;
+        flex-direction : row;
+        /* place-items : left; */
+     
+      }
+
+  .card-size{
+    height: 16vh !important;
+    width: 100vw !important;
+  }
+
+      /* .card-size {
+        height: 100px;
+       
+      } */
+    
+
+      /* .card_subtitle {
+        font-size: 10.5px !important;
+      } */
+      /* .card-size {
+        height: 14vh !important;
+        width: 50vw !important;
+      }
+
+      .card_title{
+        font-size: 15px !important;
+      }
+
+      .card_subtitle{
+        font-size: 13px !important;
+      } */
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1900px){
+   
+    .btn-container {
+        margin-left: -27px;
+        margin-top: 40px;
+        display : flex;
+        flex-direction : row;
+        /* place-items : left; */
+     
+      }
+
+      .card-size {
+        height: 15vh !important;
+        width: 50vw !important;
+      }
+
+      .card_title{
+        font-size: 17px !important;
+      }
+
+      .card_subtitle{
+        font-size: 20px !important;
+      }
+}
+
+@media only screen and (min-width: 1901px) {
+   
+    .btn-container {
+        margin-left: -27px;
+        margin-top: 40px;
+        display : flex;
+        flex-direction : row;
+        /* place-items : left; */
+     
+      }
+
+      .card-size {
+        height: 10vh !important;
+   
+      }
+
+      .card-title-font{
+        font-size: 25px;
+      }
+
+      .card-sub-font{
+        font-size: 20px;
+      }
+}
+
+  

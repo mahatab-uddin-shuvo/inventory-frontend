@@ -1,0 +1,300 @@
+@import "rsuite/dist/rsuite.css";
+
+.action__btn {
+  margin: 0 2px;
+  font-size: 14px;
+}
+
+.search_btn {
+  width: 25% !important;
+}
+.form_design {
+  max-width: 90%;
+  margin: 0% auto;
+}
+.create_btn {
+  margin: 5px 0;
+}
+.form_label {
+  font-weight: bold;
+  padding-top: 15px;
+}
+.read {
+  background-color: white;
+  max-width: 50%;
+  margin: auto;
+  padding: 5%;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  position: absolute;
+  top: 20%;
+  left: 27%;
+}
+
+.read_back {
+  max-width: 50%;
+  margin: auto;
+  border: 2px solid rgb(38, 41, 88);
+  border-radius: 5px;
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+}
+.card_footer a:first-child .read_back{
+  right: initial;
+  left: -1px;
+}
+.dttable {
+  font-size: 14px;
+}
+
+.loading {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rs-picker-select-menu-item {
+  color: black;
+}
+.rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+.rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
+  color: black;
+}
+
+.tab-content .active {
+  background-color: unset;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px;
+}
+.viewEditor .ck-toolbar_grouping {
+  display: none !important;
+}
+.viewEditor .ck-editor__editable_inline {
+  min-height: 200px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: textfield;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.preloader {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(34, 34, 34, 0.47);
+  z-index: 1000;
+}
+
+.preloader_inner {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgb(34 34 34 / 15%);
+  z-index: 1000;
+}
+
+.overlay__inner {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.overlay__content {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spin {
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.05);
+  border-top-color: #fff;
+  animation: spin 1s infinite linear;
+  border-radius: 100%;
+  border-style: solid;
+}
+
+.rs-checkbox-group {
+  flex-direction: row;
+  display: unset;
+}
+.selected {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 50px;
+  z-index: 1;
+  height: 50px;
+  background: url(../src/images/tik.svg) no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+.selected_excel_regular {
+  background-color: #cedaf3;
+  border: 2px solid #0059ff;
+}
+.selected_excel_selected {
+  background-color: #f3cece;
+  border: 2px solid #ff0000;
+}
+
+.securityIssue {
+  justify-content: center;
+  display: flex;
+  font-size: 25px;
+}
+.card_container {
+  position: relative;
+  padding-bottom: 10px;
+}
+.card_container .card_container_title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1c1c1c;
+  padding-bottom: 11px;
+}
+.card_container .chart_lebel {
+  content: attr(datacontent2);
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  font-size: 18px !important;
+  font-weight: 400;
+}
+.card_container .details_btn button {
+  font-size: 13px;
+}
+.card_container .details_btn {
+  content: attr(datacontent2);
+  position: absolute;
+  top: 40px;
+  left: 14px;
+}
+
+.card_container .details_btn .btn {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  box-shadow: 0;
+
+  color: #000000;
+}
+
+.card_container .btn-check:checked+.btn:hover, .card_container .btn-check:checked+.btn, .card_container .btn.active, .card_container .btn.show, .card_container .btn:first-child:active, .card_container :not(.btn-check)+.btn:active {
+  color: var(--bs-btn-active-color);
+  background-color: #024095;
+  border-color: transparent;
+  background-color: #cafee2;
+}
+
+.card_container .details_btn.right_aligned {
+  left: initial;
+  right: 14px;
+}
+
+.card_container .chart_lebel span {
+  font-weight: 600;
+}
+.chart_filter {
+  color: #828282;
+}
+.chart_filter span {
+  font-size: 16px;
+  line-height: 25.7px;
+  font-weight: 600;
+}
+
+.dashboard_card .preloader {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+}
+
+@media (max-width: 991.98px) {
+  .search_btn {
+    width: 50% !important;
+  }
+  .kgEPYv {
+    font-size: 12px !important;
+  }
+  /* .bnAwAJ{
+        min-width: 400px !important;
+    } */
+  .action__btn {
+    font-size: 13px;
+  }
+  .read {
+    padding-bottom: 100px;
+}
+  .read_back {
+    max-width: 100%;
+    right: 0;
+    left: 0;
+}
+  .card_footer{
+    padding-top: 10px;
+  }
+  .card_footer a:first-child .read_back{
+    right: 0;
+    left: 0;
+    bottom: 42.5px;
+  }
+}
+@media (max-width: 1200px) {
+  .search_btn {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .search_btn {
+    width: 100% !important;
+  }
+  .ifOHjV {
+    width: 800px !important;
+  }
+  .action__btn {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,133 @@
+.page {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+  .page > span {
+    z-index: -1;
+  }
+  
+  .content {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    min-height: 100vh;
+    align-items: center;
+  }
+  .content h1 {
+    font-weight: 700;
+    font-size: 175px;
+    color: #fff;
+    line-height: 190px;
+  }
+  .content h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 500;
+  }
+  .content p {
+    font-size: 16px;
+    color: #fff;
+    line-height: 24px;
+    margin-top: 10px;
+  }
+  .content a.home {
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid black;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: green;
+    margin-top: 50px;
+  }
+  
+  .copy-right p {
+    color: black;
+  }
+  .copy-right p a {
+    color: #fff;
+  }
+  
+  a.brand-logo {
+    color: var(--theme-color);
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 40px;
+    border: none;
+    background: none;
+    padding: 0px;
+    text-transform: uppercase;
+  }
+  
+  .w3l-error-grid {
+    margin: 0px auto;
+    width: 350px;
+    text-align: center;
+    padding: 1em;
+  }
+  
+  img.img-responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(0deg, rgba(83, 182, 128, 1) 0%, rgba(181, 222, 199, 1) 0%, rgba(211,228,226,1) 100%);
+
+  }
+  
+  video.img-responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .success .w3l-error-grid h2 {
+    color: #0b3a1d;
+  }
+  .success .content h1 {
+    visibility: hidden;
+  }
+  .success .content a.home {
+    border: 2px solid #000000;
+    color: #000307;
+  }
+  .success .copy-right p {
+    color: #5b5555;
+  }
+  
+  .canceled {
+    background-color: #5b5555;
+  }
+  .canceled .img-responsive {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 200px;
+  }
+  .canceled .img-responsive img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain !important;
+       object-fit: contain !important;
+  }
+  .canceled .w3l-error-grid {
+    color: #fff;
+  }
+  
+  @media (max-width: 992px) {
+    .content h1 {
+      font-size: 120px;
+    }
+  }

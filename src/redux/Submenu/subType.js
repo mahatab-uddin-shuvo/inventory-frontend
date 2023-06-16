@@ -1,0 +1,2 @@
+export const SIDEBAR_OPEN = 'SIDEBAR_OPEN'
+export const SIDEBAR_CLASE = 'SIDEBAR_CLASE'
